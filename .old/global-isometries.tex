@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, physics, amssymb, amsfonts, amsthm, mathtools, dsfont}
+\usepackage{palatino}
+\usepackage[margin=1in]{geometry}
+\usepackage{titling}
+\usepackage{graphicx, xcolor}
+\usepackage[none]{hyphenat}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{multicol}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1in}
+
+\newcommand{\dMeas}[1]{\text{d} #1 \,}
+\newcommand{\B}[1]{\boldsymbol{#1}}
+\newcommand{\residue}[2][]{\underset{#1}{\text{Res}}\Big(#2\Big)}
+\newcommand{\EuclideanOrder}{\text{\large T}_{\text{E}}}
+\newcommand\Set[2]{\{\,#1\mid#2\,\}}
+
+\numberwithin{equation}{section}
+
+\titleformat{\section}[block]{\LARGE\bfseries}{}{0em}{}[]
+
+
+% Title
+
+\pretitle{\begin{flushright}\Huge\scshape}
+\posttitle{\par\end{flushright}}
+
+\preauthor{\begin{flushright}\large\bfseries}
+\postauthor{\par\end{flushright}}
+
+\predate{}
+\postdate{}
+
+\title{Isometries of Global \texorpdfstring{$AdS_3$}{TEXT}}
+\author{Rishi Raj}
+\date{}
+
+\begin{document}
+\raggedright
+\maketitle
+
+\section{\texorpdfstring{$\B{AdS_3}$}{TEXT}}
+Consider the following subset of $\mathbb{R}^{2,2}$ (with coordinates $(X^{-1}, X^0, X^1, X^2) \equiv X^A$).
+\begin{equation}\label{ads}
+  AdS_3 \coloneqq \Set{X^A}{X^A X_A = -R^2} \hspace{0.03\linewidth} R \in \mathbb{R}^+ 
+\end{equation}
+It inherits topology, smooth structure and metric from $\mathbb{R}^{2,2}$ and is a Lorentzian 3-manifold.
+
+It has the topology of $\mathbb{S}^1 \cross \mathbb{S}^1 \cross \mathbb{R}$ and has closed timelike curves, so one instead considers its universal cover which is topologically $\mathbb{S}^1 \cross \mathbb{R}^2$.
+
+Note that the above subset with $R = 0$ considered as a subset of $\text{P}\mathbb{R}^5$ is just the conformal compactification of Minkowski space $\mathbb{R}^{1,1}$ to $(\mathbb{S}^1 \cross \mathbb{S}^1)/\B{Z}_2$. The same subset is also the conformal boundary of \ref{ads} for finite $R$ as seen by scaling $X^A = s \tilde{X}^A$ and taking $s \rightarrow \infty$.
+
+\section{Coordinates and Metric}
+One can introduce a coordinate chart in \ref{ads} by simply noting that
+\begin{align}
+  - (X^{-1})^2 - (X^{0})^2 + (X^{1})^2 + (X^{2})^2 = -R^2
+\intertext{so that}
+  (X^{-1})^2 + (X^{0})^2 = R^2 \cosh^2(\rho) \cr
+  (X^{1})^2 + (X^{2})^2 = R^2 \sinh^2(\rho)
+\end{align}
+does the job and continuing the same thing, one gets the so-called \textbf{global coordinates} on $AdS_3$ (in hyperbolic form)
+\begin{align}\label{globalcoordinates}
+  X^{-1} &= R \cosh{\rho} \cos{\tau} \cr
+  X^{0} &= R \cosh{\rho} \sin{\tau} \cr
+  X^{1} &= R \sinh{\rho} \cos{\phi} \cr
+  X^{2} &= R \sinh{\rho} \sin{\phi}
+\end{align}
+
+Writing the $\mathbb{R}^{2,2}$ metric in these coordinates gives the Global $AdS_3$ metric:
+\begin{equation}\label{globalmetric}
+  \text{d}s^2 = R^2 (-\cosh{\rho}^2 \text{d}\tau^2 + \text{d}\rho^2 + \sinh{\rho}^2 \text{d}\phi^2)
+\end{equation}
+
+\section{Isometries}
+One can easily see that the isometries of \ref{ads} are those of $\mathbb{R}^{2,2}$ that leave the origin fixed. That is, the symmetry group is $\mathcal{SO}(2, 2)$. The embedding coordinates transform as:
+\begin{gather}
+  X^A \rightarrow Y^A \, = \, \Lambda^{A}_{\; B} \, X^{B}
+  \intertext{with}
+  \eta_{A B} \Lambda^{A}_{\; C} \Lambda^{B}_{\; D} = \eta_{C D}
+\end{gather}
+where $\eta = \text{diag}(-1, -1, 1, 1)$
+
+This includes two rotations and four boosts. The rotations are the simplest as they are just $\tau$ and $\rho$ translations:
+\begin{align}
+  \text{$X^{-1}$-$X^{0}$ rotation} \hspace{0.05\linewidth}& \tau \rightarrow \tau^\prime = \tau + c \cr
+  \text{$X^{1}$-$X^{2}$ rotation} \hspace{0.05\linewidth}& \phi \rightarrow \phi^\prime = \phi + d
+\end{align}
+Also note that these are unchanged when one takes the boundary limit ($\rho \rightarrow \infty$)
+
+The boosts are a bit complicated but straightforward to derive. I write one and others follow from combinations of rotations above. E.g. the $X^{0}$-$X^{2}$ boost with parameter $\nu$
+\begin{equation}
+  \begin{pmatrix}
+    X^{-1} \\
+    X^{0} \\
+    X^{1} \\
+    X^{2}
+  \end{pmatrix} \rightarrow
+  \begin{pmatrix}
+    Y^{-1} \\
+    Y^{0} \\
+    Y^{1} \\
+    Y^{2}
+  \end{pmatrix} = 
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & \cosh{\nu} & 0 & -\sinh{\nu} \\
+    0 & 0 & 1 & 0 \\
+    0 & -\sinh{\nu} & 0 & \cosh{\nu}
+  \end{pmatrix} \begin{pmatrix}
+    X^{-1} \\
+    X^{0} \\
+    X^{1} \\
+    X^{2}
+  \end{pmatrix}
+\end{equation}
+On the Global coordinates, this turns out to be
+\begin{align}
+  \rho \, \rightarrow& \, \rho^\prime = \cosh^{-1}\sqrt{(\cosh (\nu ) \cosh (\rho) \sin
+  (\tau)-\sin (\phi) \sinh (\nu ) \sinh (\rho))^2+\cosh ^2(\rho) \cos
+  ^2(\tau)} \cr
+  \tau \, \rightarrow& \, \tau^\prime = \tan^{-1}(\cosh (\nu ) \tan (\tau) - \sin (\phi) \sinh (\nu ) \tanh
+  (\rho) \sec (\tau)) \cr
+  \phi \, \rightarrow& \, \phi^\prime = \tan^{-1}(\cosh (\nu ) \tan (\phi) - \sec (\phi) \sinh (\nu ) \coth (\rho) \sin (\tau))
+\end{align}
+
+On the boundary, these expressions simplify a bit
+\begin{align}
+  \rho \, \rightarrow& \, \rho^\prime = \frac{1}{2} \rho \ln((\cosh (\nu ) \sin
+  (\tau)-\sin (\phi) \sinh (\nu ))^2 + \cos
+  ^2(\tau)) \cr
+  \tau \, \rightarrow& \, \tau^\prime = \tan^{-1}(\cosh (\nu ) \tan (\tau) - \sin (\phi) \sinh (\nu )\sec (\tau)) \cr
+  \phi \, \rightarrow& \, \phi^\prime = \tan^{-1}(\cosh (\nu ) \tan (\phi) - \sec (\phi) \sinh (\nu )\sin (\tau))
+\end{align}
+
+\end{document}
